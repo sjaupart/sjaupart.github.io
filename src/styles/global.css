@@ -117,6 +117,21 @@ body {
   align-items: center;
 }
 
+.site-footer__links {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+}
+
+.site-footer__links a {
+  font-size: 12px;
+  color: var(--color-text-faint);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.site-footer__links a:hover { color: var(--color-text-muted); }
+
 .footer-logo {
   font-size: 13px;
   font-weight: 500;
@@ -125,21 +140,6 @@ body {
   align-items: center;
   gap: 7px;
 }
-
-.footer-links {
-  display: flex;
-  gap: 1.25rem;
-  list-style: none;
-}
-
-.footer-links a {
-  font-size: 12px;
-  color: var(--color-text-faint);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.footer-links a:hover { color: var(--color-text-muted); }
 
 /* ── Tags ── */
 .tag {

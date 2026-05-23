@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   title: string;
@@ -56,17 +57,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
 
-    <footer class="site-footer">
-      <div class="footer-logo">
-        <span class="nav-dot"></span>
-        Sébastien JAUPART
-      </div>
-      <ul class="footer-links">
-        <li><a href="https://github.com/votre-username" target="_blank" rel="noopener">GitHub</a></li>
-        <li><a href="https://linkedin.com/in/votre-profil" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="/rss.xml">RSS</a></li>
-      </ul>
-    </footer>
+    <Footer />
   </div>
 </body>
 </html>
