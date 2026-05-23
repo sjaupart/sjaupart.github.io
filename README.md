@@ -17,7 +17,7 @@ npm run preview   # Prévisualiser le build
 src/
   content/blog/   → Articles en Markdown (.md)
   layouts/        → Base.astro, BlogPost.astro
-  pages/          → index, blog/index, blog/[slug], about, contact, portfolio
+  pages/          → index, blog/index, blog/[slug], about, contact
   styles/         → global.css, prose.css
 public/           → favicon, images, CV.pdf
 .github/workflows → deploy.yml (CI/CD → GitHub Pages)
