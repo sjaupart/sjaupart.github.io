@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/prose.css';
+---
+
+<Base title="À propos — Sébastien JAUPART" description="Développeur senior spécialisé en architecture backend et systèmes distribués.">
+  <article>
+    <div style="width: 28px; height: 2px; background: var(--accent); border-radius: 1px; margin-bottom: 1rem;"></div>
+    <h1 style="font-size: 26px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 2rem;">À propos</h1>
+
+    <div class="prose">
+      <p>
+        Développeur senior avec plus de 10 ans d'expérience, spécialisé en architecture backend et systèmes distribués.
+        J'ai travaillé sur des systèmes à fort trafic dans les secteurs finance et e-commerce.
+      </p>
+
+      <h2>Stack & expertise</h2>
+      <p>
+        Typescript · Node.js · PostgreSQL · Redis · Kafka · Docker · Kubernetes.
+        Patterns : DDD, CQRS, Event Sourcing, Architecture hexagonale.
+      </p>
+
+      <h2>Ce blog</h2>
+      <p>
+        J'écris pour clarifier ma propre pensée et partager ce que j'apprends en production.
+        Pas de tutoriels "hello world" — plutôt des retours d'expérience et des prises de position
+        sur des sujets qui méritent qu'on s'y attarde.
+      </p>
+    </div>
+
+    <div style="margin-top: 2.5rem; padding-top: 1.5rem; border-top: 0.5px solid var(--color-border);">
+      <a href="/public/cv.pdf" download style="font-size: 13px; color: var(--color-text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+        Télécharger le CV (PDF) →
+      </a>
+    </div>
+  </article>
+</Base>

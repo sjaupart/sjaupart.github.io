@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Blog de développeur senior — Architecture, Backend, Réflexions.' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Lora:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <nav class="site-nav">
+        <a href="/" class="nav-logo">
+          <span class="nav-dot"></span>
+          Sébastien JAUPART
+        </a>
+        <ul class="nav-links">
+          <li><a href="/blog" aria-current={Astro.url.pathname.startsWith('/blog') ? 'page' : undefined}>Blog</a></li>
+          <li><a href="/about" aria-current={Astro.url.pathname === '/about' ? 'page' : undefined}>À propos</a></li>
+          <li><a href="/portfolio" aria-current={Astro.url.pathname === '/portfolio' ? 'page' : undefined}>Portfolio</a></li>
+          <li><a href="/contact" aria-current={Astro.url.pathname === '/contact' ? 'page' : undefined}>Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <span class="nav-dot"></span>
+        Sébastien JAUPART
+      </div>
+      <ul class="footer-links">
+        <li><a href="https://github.com/votre-username" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/in/votre-profil" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+    </footer>
+  </div>
+</body>
+</html>

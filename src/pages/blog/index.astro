@@ -1,0 +1,60 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Base title="Blog" description="Articles sur l'architecture, le backend et le craft logiciel.">
+  <div style="margin-bottom: 2rem;">
+    <h1 style="font-size: 22px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem;">Blog</h1>
+    <p style="font-size: 14px; color: var(--color-text-muted);">{allPosts.length} articles publiés</p>
+  </div>
+
+  <div id="filters" style="display: flex; gap: 8px; margin-bottom: 2rem; flex-wrap: wrap;">
+    <button data-filter="tous"        class="tag filter-btn tag--active"  style="cursor:pointer;">tous</button>
+    <button data-filter="réflexions"  class="tag filter-btn"              style="cursor:pointer;">réflexions</button>
+    <button data-filter="veille"      class="tag filter-btn"              style="cursor:pointer;">veille</button>
+  </div>
+
+  <div id="articles" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+    {allPosts.map(post => (
+      <div data-category={post.data.category} class="post-item">
+        <ArticleCard
+          title={post.data.title}
+          description={post.data.excerpt}
+          date={post.data.date}
+          category={post.data.category}
+          slug={post.id}
+        />
+      </div>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .tag--active {
+    background: var(--color-accent-light) !important;
+    color: var(--color-accent-text) !important;
+    border-color: var(--color-accent-border) !important;
+  }
+  .filter-btn { background: var(--color-bg-secondary); border: 0.5px solid var(--color-border); }
+</style>
+
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.post-item');
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      btns.forEach(b => b.classList.remove('tag--active'));
+      btn.classList.add('tag--active');
+      items.forEach(item => {
+        const show = filter === 'tous' || item.getAttribute('data-category') === filter;
+        item.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>

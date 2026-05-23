@@ -1,0 +1,54 @@
+---
+import Base from './Base.astro';
+import '../styles/prose.css';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, date, category, tags, excerpt } = post.data;
+
+const formattedDate = new Intl.DateTimeFormat('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+}).format(date);
+---
+
+<Base title={title} description={excerpt}>
+  <article>
+    <header style="margin-bottom: 2rem;">
+      <div style="width: 28px; height: 2px; background: var(--accent); border-radius: 1px; margin-bottom: 1rem;"></div>
+
+      <h1 style="font-size: clamp(22px, 4vw, 28px); font-weight: 600; line-height: 1.25; letter-spacing: -0.03em; margin-bottom: 0.75rem;">
+        {title}
+      </h1>
+
+      <p style="font-size: 17px; line-height: 1.65; color: var(--color-text-muted); margin-bottom: 1.25rem; font-family: var(--font-serif); font-style: italic;">
+        {excerpt}
+      </p>
+
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <span class={`tag ${category === 'réflexions' ? 'accent' : ''}`}>{category}</span>
+        {tags.map(tag => <span class="tag">{tag}</span>)}
+        <span class="text-faint" style="font-size: 12px; display: flex; align-items: center; gap: 4px;">
+          {formattedDate}
+        </span>
+      </div>
+    </header>
+
+    <hr class="divider" style="margin-bottom: 2rem;" />
+
+    <div class="prose">
+      <slot />
+    </div>
+
+    <footer style="margin-top: 3rem; padding-top: 1.5rem; border-top: 0.5px solid var(--color-border);">
+      <a href="/blog" style="font-size: 13px; color: var(--color-text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color 0.15s;">
+        ← Tous les articles
+      </a>
+    </footer>
+  </article>
+</Base>

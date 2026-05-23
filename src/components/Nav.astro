@@ -1,0 +1,29 @@
+---
+const navLinks = [
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'À propos' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="site-nav">
+  <a href="/" class="site-nav__logo">
+    <span class="site-nav__dot" aria-hidden="true"></span>
+    Sébastien JAUPART
+  </a>
+  <ul class="site-nav__links">
+    {navLinks.map(({ href, label }) => (
+      <li>
+        <a
+          href={href}
+          aria-current={currentPath.startsWith(href) ? 'page' : undefined}
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
