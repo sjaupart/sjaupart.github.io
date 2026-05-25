@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/prose.css';
+
+const lastUpdated = '2026-05-23';
+const formattedDate = new Date(lastUpdated).toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Base
+  title="Mentions légales"
+  description="Mentions légales du blog d'Alexandre, conformément à la loi pour la confiance dans l'économie numérique (LCEN) du 21 juin 2004."
+>
+  <article>
+    <div style="width: 28px; height: 2px; background: var(--color-accent); border-radius: 1px; margin-bottom: 1rem;"></div>
+    <h1 style="font-size: 26px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem;">Mentions légales</h1>
+    <p style="font-size: 13px; color: var(--color-text-subtle); margin-bottom: 2rem;">Mise à jour le {formattedDate}</p>
+
+    <div class="prose">
+
+      <h2>Éditeur du site</h2>
+      <p>
+        Ce site est édité à titre personnel par un particulier, conformément à l'article 6-III-2
+        de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN).
+      </p>
+      <p>
+        En tant que particulier, l'éditeur a communiqué ses coordonnées complètes à l'hébergeur
+        du site. Ces informations peuvent être communiquées aux autorités compétentes sur demande.
+      </p>
+      <p>
+        Pour toute demande, vous pouvez contacter l'éditeur à l'adresse suivante :<br />
+        <strong>contact [at] ton-domaine.fr</strong>
+      </p>
+
+      <h2>Directeur de la publication</h2>
+      <p>Alexandre — éditeur du site.</p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Ce site est hébergé par GitHub Pages, un service de GitHub, Inc.
+      </p>
+      <p>
+        GitHub, Inc.<br />
+        88 Colin P Kelly Jr Street<br />
+        San Francisco, CA 94107<br />
+        États-Unis<br />
+        <a href="https://github.com" target="_blank" rel="noopener">github.com</a>
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble du contenu de ce site (articles, textes, structure) est la propriété exclusive
+        de l'éditeur, sauf mention contraire. Toute reproduction, même partielle, est soumise à
+        autorisation préalable.
+      </p>
+      <p>
+        Les extraits de code publiés sur ce blog sont mis à disposition sous licence
+        <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT</a>,
+        sauf mention contraire dans l'article concerné.
+      </p>
+
+      <h2>Limitation de responsabilité</h2>
+      <p>
+        Les articles publiés sur ce blog reflètent les opinions personnelles de l'auteur et sont
+        fournis à titre informatif. L'éditeur ne saurait être tenu responsable d'erreurs ou
+        d'omissions, ni de l'usage qui pourrait être fait des informations présentées.
+      </p>
+      <p>
+        Les liens externes présents sur ce site pointent vers des ressources tierces sur lesquelles
+        l'éditeur n'a aucun contrôle et dont il ne peut garantir la pérennité ou le contenu.
+      </p>
+
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import '../styles/prose.css';
+
+const lastUpdated = '2026-05-23';
+const formattedDate = new Date(lastUpdated).toLocaleDateString('fr-FR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<Base
+  title="Politique de confidentialité"
+  description="Politique de confidentialité du blog d'Alexandre. Aucun cookie de traçage, analytics via Umami, conformité RGPD."
+>
+  <article>
+    <div style="width: 28px; height: 2px; background: var(--color-accent); border-radius: 1px; margin-bottom: 1rem;"></div>
+    <h1 style="font-size: 26px; font-weight: 600; letter-spacing: -0.03em; margin-bottom: 0.5rem;">Politique de confidentialité</h1>
+    <p style="font-size: 13px; color: var(--color-text-subtle); margin-bottom: 2rem;">Mise à jour le {formattedDate}</p>
+
+    <div class="prose">
+
+      <h2>Résumé</h2>
+      <p>
+        Ce blog ne dépose <strong>aucun cookie</strong> sur votre navigateur et ne collecte
+        aucune donnée personnelle vous identifiant. Aucun bandeau de consentement n'est affiché
+        car aucun traçage publicitaire ou analytique basé sur des cookies n'est utilisé.
+      </p>
+
+      <h2>Responsable du traitement</h2>
+      <p>
+        Ce site est édité à titre personnel par un particulier (Alexandre). Contact :
+        <strong>contact [at] ton-domaine.fr</strong>
+      </p>
+
+      <h2>Données collectées et outil analytics</h2>
+      <p>
+        Ce site utilise <a href="https://umami.is" target="_blank" rel="noopener">Umami</a>,
+        une solution d'analytics open source, auto-hébergée et respectueuse de la vie privée.
+        Umami collecte uniquement des données agrégées et anonymisées :
+      </p>
+      <ul>
+        <li>Pages consultées et nombre de visites</li>
+        <li>Source de trafic (référent : moteur de recherche, réseau social, lien direct)</li>
+        <li>Pays de provenance (dérivé de l'adresse IP, non conservée)</li>
+        <li>Type d'appareil et navigateur (données agrégées)</li>
+      </ul>
+      <p>
+        Ces données sont <strong>entièrement anonymisées</strong> : aucune adresse IP n'est
+        stockée, aucun identifiant persistant n'est créé, aucun cookie n'est déposé.
+        Il est impossible de vous identifier individuellement à partir de ces données.
+      </p>
+
+      <h2>Base légale</h2>
+      <p>
+        Le traitement repose sur l'intérêt légitime de l'éditeur (art. 6.1.f du RGPD) :
+        mesurer l'audience globale du blog afin d'en améliorer le contenu. Ce traitement
+        ne nécessite pas de consentement préalable car il n'implique ni cookie, ni traçage
+        individuel, conformément aux lignes directrices de la CNIL sur les exemptions de
+        consentement pour les analytics strictement nécessaires à la mesure d'audience.
+      </p>
+
+      <h2>Hébergement des données analytics</h2>
+      <p>
+        L'instance Umami est hébergée sur Railway (Railway, Inc., San Francisco, États-Unis),
+        avec une base de données PostgreSQL dédiée. Aucune donnée analytics n'est partagée
+        avec des tiers ni utilisée à des fins publicitaires.
+      </p>
+
+      <h2>Hébergement du site</h2>
+      <p>
+        Le site est hébergé par GitHub Pages (GitHub, Inc., San Francisco, États-Unis).
+        GitHub peut collecter des logs de connexion (adresse IP, horodatage) dans le cadre
+        du fonctionnement normal de son infrastructure. Ces logs sont soumis à la
+        <a href="https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">
+          politique de confidentialité de GitHub
+        </a>.
+      </p>
+
+      <h2>Absence de cookies et de traceurs</h2>
+      <p>
+        Ce site n'utilise aucun cookie de toute nature (fonctionnel, analytique, publicitaire).
+        Aucun pixel de suivi, aucun script tiers de traçage (Google, Meta, etc.) n'est intégré.
+      </p>
+
+      <h2>Vos droits</h2>
+      <p>
+        Conformément au RGPD, vous disposez d'un droit d'accès, de rectification,
+        d'effacement et d'opposition concernant vos données personnelles.
+        Dans la mesure où ce site ne collecte aucune donnée personnelle identifiante,
+        ces droits s'exercent principalement auprès de GitHub pour les logs d'infrastructure.
+      </p>
+      <p>
+        Pour toute question relative à ce site, vous pouvez contacter l'éditeur à :
+        <strong>contact [at] ton-domaine.fr</strong>
+      </p>
+      <p>
+        Vous avez également le droit d'introduire une réclamation auprès de la
+        <a href="https://www.cnil.fr/fr/plaintes" target="_blank" rel="noopener">CNIL</a>
+        si vous estimez que vos droits ne sont pas respectés.
+      </p>
+
+    </div>
+  </article>
+</Base>
