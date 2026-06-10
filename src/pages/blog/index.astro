@@ -17,6 +17,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
     <button data-filter="tous"        class="tag filter-btn tag--active"  style="cursor:pointer;">tous</button>
     <button data-filter="réflexions"  class="tag filter-btn"              style="cursor:pointer;">réflexions</button>
     <button data-filter="veille"      class="tag filter-btn"              style="cursor:pointer;">veille</button>
+    <button data-filter="testing"     class="tag filter-btn"              style="cursor:pointer;">testing</button>
   </div>
 
   <div id="articles" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
