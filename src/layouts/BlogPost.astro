@@ -1,13 +1,16 @@
 ---
 import Base from './Base.astro';
+import TableOfContents from '../components/TableOfContents.astro';
 import '../styles/prose.css';
 import type { CollectionEntry } from 'astro:content';
+import type { MarkdownHeading } from 'astro';
 
 interface Props {
   post: CollectionEntry<'blog'>;
+  headings: MarkdownHeading[];
 }
 
-const { post } = Astro.props;
+const { post, headings } = Astro.props;
 const { title, date, category, tags, excerpt } = post.data;
 
 const formattedDate = new Intl.DateTimeFormat('fr-FR', {
@@ -40,6 +43,8 @@ const formattedDate = new Intl.DateTimeFormat('fr-FR', {
     </header>
 
     <hr class="divider" style="margin-bottom: 2rem;" />
+
+    <TableOfContents headings={headings} />
 
     <div class="prose">
       <slot />

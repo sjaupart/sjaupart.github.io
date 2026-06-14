@@ -1,0 +1,122 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+const toc = headings.filter(h => h.depth === 1 || h.depth === 2);
+---
+
+{toc.length >= 2 && (
+  <nav class="toc" aria-label="Sommaire">
+    <p class="toc-title">Sommaire</p>
+    <ul>
+      {toc.map(h => (
+        <li class={h.depth === 2 ? 'toc-sub' : ''}>
+          <a href={`#${h.slug}`} data-toc-slug={h.slug}>{h.text}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .toc {
+    position: fixed;
+    top: 8rem;
+    left: calc(50% + 360px);
+    width: 220px;
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
+    font-family: var(--font-sans);
+  }
+
+  .toc-title {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-faint);
+    margin-bottom: 0.75rem;
+  }
+
+  .toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid var(--color-border);
+  }
+
+  .toc li { margin: 0; }
+
+  .toc a {
+    display: block;
+    padding: 4px 0 4px 1rem;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.15s, border-color 0.15s;
+  }
+
+  .toc .toc-sub a { padding-left: 2.25rem; }
+
+  .toc a:hover { color: var(--color-text); }
+
+  .toc a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+  }
+
+  @media (max-width: 1200px) {
+    .toc { display: none; }
+  }
+</style>
+
+<script>
+  function initToc() {
+    const links = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('.toc a[data-toc-slug]')
+    );
+    if (links.length === 0) return;
+
+    const linkBySlug = new Map(
+      links.map(link => [link.dataset.tocSlug, link])
+    );
+    const headings = Array.from(
+      document.querySelectorAll<HTMLElement>('.prose h1[id], .prose h2[id]')
+    ).filter(h => linkBySlug.has(h.id));
+    if (headings.length === 0) return;
+
+    let activeSlug: string | null = null;
+    const setActive = (slug: string | null) => {
+      if (slug === activeSlug) return;
+      activeSlug = slug;
+      links.forEach(link =>
+        link.classList.toggle('active', link.dataset.tocSlug === slug)
+      );
+    };
+
+    const visible = new Set<string>();
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) visible.add(entry.target.id);
+          else visible.delete(entry.target.id);
+        }
+        const current = headings.find(h => visible.has(h.id));
+        if (current) setActive(current.id);
+      },
+      { rootMargin: '-10% 0px -70% 0px' }
+    );
+
+    headings.forEach(h => observer.observe(h));
+  }
+
+  initToc();
+  document.addEventListener('astro:page-load', initToc);
+</script>
